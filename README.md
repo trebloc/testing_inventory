@@ -14,7 +14,7 @@
 
 * The failing specs are for a `ProductsController`. For the first part of this lab, implement the functionality for the `ProductsController` to pass the tests. **Some tips:**
   * Read the errors carefully. They will guide you as to what to do next.
-  * Once you've gotten past the initial setup errors, and you have failing specs printing out in the Terminal, it may help to comment-out some of the specs to narrow in on what you're working on. Comment them back in when you're ready to work on them.
+  * Once you've gotten past the initial setup errors, and you have failing specs printing out in the Terminal, it may help to only run specific specs by name using `rspec spec -e '#index'`
 * You DON'T need to implement fully-functioning views, but you can if you want to.
 * Once you have all the specs passing for the `ProductsController`, it's time to implement a unit test for products:
   * Products should have an instance method called `#margin` that calculates the <a href="http://retail.about.com/od/glossary/g/margin.htm" target="_blank">retail margin</a>.
