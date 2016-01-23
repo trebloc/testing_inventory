@@ -141,8 +141,8 @@ RSpec.describe ProductsController, type: :controller do
         expect(product.description).to eq(new_description)
         expect(product.category).to eq(new_category)
         expect(product.sku).to eq(new_sku)
-        expect(product.wholesale).to eq(new_wholesale)
-        expect(product.retail).to eq(new_retail)
+        expect(product.wholesale).to eq(new_wholesale.to_d) # compare decimal with decimal
+        expect(product.retail).to eq(new_retail.to_d)
       end
 
       it "redirects to 'product_path'" do
