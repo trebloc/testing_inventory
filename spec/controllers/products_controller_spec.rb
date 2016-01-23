@@ -3,11 +3,11 @@ require "rails_helper"
 RSpec.describe ProductsController, type: :controller do
 
   describe "#index" do
-    let(:all_products) { Product.all }
+    let!(:all_products) { Product.all }
     before { get :index }
 
     it "assigns @products" do
-      expect(assigns(:products)).to eq(@all_products)
+      expect(assigns(:products)).to eq(all_products)
     end
 
     it "renders the :index view" do
@@ -33,15 +33,17 @@ RSpec.describe ProductsController, type: :controller do
       let!(:products_count) { Product.count }
 
       before do
+        wholesale_price = Random.new.rand(1.0..100.0).round(2)
         product_hash = {
             name: FFaker::Lorem.words(5).join(" "),
             description: FFaker::Lorem.sentence,
             category: FFaker::Lorem.words(3).join,
             sku: FFaker::Lorem.words(2).join,
-            wholesale: Random.new.rand(1.0..100.0).round(2),
+            wholesale: wholesale_price,
             retail: wholesale_price * 4
           }
-        post :create, product_hash
+
+        post :create, product: product_hash
       end
 
       it "adds the new product to the database" do
@@ -130,7 +132,7 @@ RSpec.describe ProductsController, type: :controller do
           retail: new_retail
         }
 
-        # reload @product to get changes from :update
+        # reload product to get changes from :update
         product.reload
       end
 
@@ -152,7 +154,7 @@ RSpec.describe ProductsController, type: :controller do
     context "failed validations" do
       before do
         # update with blank product params (fails validations)
-        put :update, id: @product.id, product: {
+        put :update, id: product.id, product: {
           name: nil,
           description: nil,
           category: nil,
@@ -167,14 +169,14 @@ RSpec.describe ProductsController, type: :controller do
       end
 
       it "redirects to 'edit_product_path'" do
-        expect(response).to redirect_to(edit_product_path(@product))
+        expect(response).to redirect_to(edit_product_path(product))
       end
     end
   end
 
   describe "#destroy" do
+    let!(:product) { FactoryGirl.create(:product) }
     let!(:products_count) { Product.count }
-    let(:product) { FactoryGirl.create(:product) }
 
     before do
       delete :destroy, id: product.id
