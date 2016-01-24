@@ -21,7 +21,7 @@
   * **Write the spec for `#margin` before implementing the method!**
   * **Hint:** `rails g rspec:model product`
 
-Feel free to reference the [solution branch](https://github.com/sf-wdi-24/testing_inventory/tree/solution) for guidance.
+Feel free to reference the [solution branch](../../tree/solution) for guidance.
 
 ## Part 2: Items
 
@@ -35,7 +35,7 @@ Feel free to reference the [solution branch](https://github.com/sf-wdi-24/testin
   * Products should have an instance method called `#sell_through` that calculates the sell-through rate (items sold / total items).
   * **Write the spec for `#sell_through` before implementing the method!**
 
-Feel free to reference the [solution_items branch](https://github.com/sf-wdi-24/testing_inventory/tree/solution_items) for guidance.
+Feel free to reference the [solution_items branch](../../tree/solution_items) for guidance.
 
 ## Resources
 
